@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta name="description" content="KEDEIA. Pitch del proyecto: coordinación del cuidado domiciliario, mercado y escenario de inversión.">
   <title>KEDEIA · Pitch del proyecto</title>
   <script src="assets/chart.min.js"></script>
@@ -14,19 +17,24 @@
     button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
     a{color:inherit}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--display)}
     .viewport{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
-    .slide-deck{position:relative;width:1440px;height:810px;flex-shrink:0;transform-origin:center center;background:var(--cream)}
-    .slide{position:absolute;inset:0;padding:48px 72px 96px;display:flex;flex-direction:column;opacity:0;visibility:hidden;pointer-events:none;overflow:hidden;transition:opacity .42s var(--ease-soft),transform .42s var(--ease-cinematic);transform:translateX(38px);will-change:opacity,transform}
-    .slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(0);z-index:2;transition:opacity .45s var(--ease-soft),transform .45s var(--ease-cinematic)}
-    .slide.prev{transform:translateX(-38px)}.slide-deck.going-back .slide:not(.active){transform:translateX(38px)}.slide-deck.going-back .slide.prev{transform:translateX(-38px)}
-    @keyframes animIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-    .slide.active .slide-title,.slide.active .opening h1{animation:animIn .48s var(--ease-cinematic) .06s both}
-    .slide.active .slide-body{animation:animIn .52s var(--ease-cinematic) .12s both}
-    .slide.active .evidence-layout>*:first-child,.slide.active .demo-layout>*:first-child,.slide.active .market-block:nth-child(1),.slide.active .milestone:nth-child(1),.slide.active .chart-block:first-child,.slide.active .tech-group:nth-child(1),.slide.active .team-person:nth-child(1){animation:animIn .46s var(--ease-cinematic) .15s both}
-    .slide.active .evidence-layout>*:nth-child(2),.slide.active .demo-layout>*:nth-child(2),.slide.active .market-block:nth-child(2),.slide.active .milestone:nth-child(2),.slide.active .chart-block:nth-child(2),.slide.active .tech-group:nth-child(2),.slide.active .team-person:nth-child(2){animation:animIn .46s var(--ease-cinematic) .22s both}
-    .slide.active .market-block:nth-child(3),.slide.active .milestone:nth-child(3),.slide.active .tech-group:nth-child(3),.slide.active .team-person:nth-child(3){animation:animIn .46s var(--ease-cinematic) .29s both}
-    .slide.active .team-person:nth-child(4){animation:animIn .46s var(--ease-cinematic) .36s both}
-    .slide.active .team-person:nth-child(5){animation:animIn .46s var(--ease-cinematic) .43s both}
-    .slide.active .finance-milestones,.slide.active .exit-line,.slide.active .closing-ask{animation:animIn .52s var(--ease-cinematic) .26s both}
+    .slide-deck{position:relative;width:1440px;height:810px;flex-shrink:0;transform-origin:center center;background:var(--cream);overflow:hidden}
+    .slide{position:absolute;inset:0;padding:48px 72px 96px;display:flex;flex-direction:column;opacity:0;visibility:hidden;pointer-events:none;overflow:hidden;transform:translateX(100%);will-change:transform,opacity;z-index:1}
+    .slide-deck.ready .slide{transition:transform .54s var(--ease-cinematic),opacity .42s ease,visibility .54s}
+    .slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(0);z-index:2}
+    .slide-deck.ready .slide.active{transition:transform .54s var(--ease-cinematic),opacity .42s ease}
+    .slide.prev{transform:translateX(-100%);opacity:0;visibility:hidden}
+    .slide-deck.ready .slide.prev{transition:transform .54s var(--ease-cinematic),opacity .42s ease,visibility .54s}
+    .slide-deck.going-back .slide{transform:translateX(100%)}
+    .slide-deck.going-back .slide.prev{transform:translateX(-100%)}
+    .slide-deck.going-back .slide.active{transform:translateX(0)}
+    @keyframes animIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .slide.active .slide-title,.slide.active .opening h1{animation:animIn .45s var(--ease-cinematic) .08s both}
+    .slide.active .evidence-layout>*:first-child,.slide.active .demo-layout>*:first-child,.slide.active .market-block:nth-child(1),.slide.active .milestone:nth-child(1),.slide.active .chart-block:first-child,.slide.active .tech-group:nth-child(1),.slide.active .team-person:nth-child(1){animation:animIn .45s var(--ease-cinematic) .12s both}
+    .slide.active .evidence-layout>*:nth-child(2),.slide.active .demo-layout>*:nth-child(2),.slide.active .market-block:nth-child(2),.slide.active .milestone:nth-child(2),.slide.active .chart-block:nth-child(2),.slide.active .tech-group:nth-child(2),.slide.active .team-person:nth-child(2){animation:animIn .45s var(--ease-cinematic) .18s both}
+    .slide.active .market-block:nth-child(3),.slide.active .milestone:nth-child(3),.slide.active .tech-group:nth-child(3),.slide.active .team-person:nth-child(3){animation:animIn .45s var(--ease-cinematic) .24s both}
+    .slide.active .team-person:nth-child(4){animation:animIn .45s var(--ease-cinematic) .30s both}
+    .slide.active .team-person:nth-child(5){animation:animIn .45s var(--ease-cinematic) .36s both}
+    .slide.active .finance-milestones,.slide.active .exit-line,.slide.active .closing-ask{animation:animIn .48s var(--ease-cinematic) .22s both}
     .masthead{display:flex;justify-content:space-between;align-items:center;gap:32px;margin-bottom:30px;min-height:32px}
     .brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:2px;line-height:1}
     .brand img{width:32px;height:38px;object-fit:contain}.folio{font-size:18px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
@@ -114,7 +122,7 @@
     .overview-overlay{display:none;position:fixed;inset:0;background:#F6F7F2FC;padding:40px;z-index:30;overflow:auto}.overview-overlay.open{display:block}.overview-head{max-width:1280px;margin:0 auto 30px;display:flex;justify-content:space-between;align-items:center;gap:24px}.overview-head h2{font-size:30px;font-weight:500}.overview-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;max-width:1280px;margin:auto}.overview-card{display:flex;flex-direction:column;justify-content:space-between;text-align:left;background:white;color:var(--ink);border:1px solid var(--line);padding:23px;height:210px;border-radius:6px;gap:20px}.overview-card.current{border:2px solid var(--teal);background:var(--tint)}.overview-card strong{font-family:var(--display);font-size:23px;line-height:1.2;font-weight:500}.overview-card span{font-size:14px;color:var(--muted)}
     .deck-toast{position:fixed;bottom:65px;left:50%;transform:translateX(-50%);background:var(--ink);color:white;padding:12px 22px;border-radius:6px;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:40;max-width:90vw;text-align:center}.deck-toast.show{opacity:1}
     @media(max-width:900px){.overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.overview-overlay{padding:24px}.overview-card{height:175px}.controls-dock{bottom:6px}}
-    @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+    @media(prefers-reduced-motion:reduce){.slide{transition:opacity .35s ease!important;transform:none!important}.slide.prev{transform:none!important}}
     @page{size:15in 8.4375in;margin:0}
     @media print{html,body{width:1440px;height:auto;overflow:visible;print-color-adjust:exact;-webkit-print-color-adjust:exact}.viewport{position:static;display:block;overflow:visible}.slide-deck{transform:none!important;width:1440px;height:auto;position:static}.slide{position:relative;opacity:1!important;visibility:visible!important;pointer-events:auto;transform:none!important;width:1440px;height:810px;break-after:page;page-break-after:always;transition:none!important}.slide:last-child{break-after:auto;page-break-after:auto}.controls-dock,.progress-track,.speaker-drawer,.overview-overlay,.deck-toast{display:none!important}.print-chart[src]{display:block}.print-chart[src]+canvas{display:none!important}.chart-box{height:250px}.demo-button,.voice-button,.task-toggle{pointer-events:none}}
   </style>
@@ -557,6 +565,7 @@ document.getElementById('btnTimerStart').addEventListener('click',toggleTimer);
 document.getElementById('btnTimerReset').addEventListener('click',resetTimer);
 document.getElementById('btnPrint').addEventListener('click',()=>window.print());
 setupOverview();fitDeck();goToSlide(1);
+requestAnimationFrame(()=>{setTimeout(()=>slideDeck.classList.add('ready'),50);});
 if (document.fonts) document.fonts.ready.then(()=>{financeCharts.forEach(chart=>chart.update('none'));});
 </script>
 </body>
