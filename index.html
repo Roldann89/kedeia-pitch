@@ -195,7 +195,8 @@
     /* Equipo (Slide 11) */
     .team-row{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin:12px 0 28px}
     .team-person{padding-top:16px;border-top:1px solid var(--line)}
-    .photo-slot{width:100px;height:100px;background:var(--tint);border-radius:50px;display:grid;place-items:center;font-family:var(--display);font-size:30px;font-weight:600;color:var(--teal);border:2px solid var(--line);margin-bottom:14px;box-shadow:0 4px 12px rgba(11,59,63,0.06)}
+    .photo-slot{width:100px;height:100px;background:var(--tint);border-radius:50px;display:grid;place-items:center;font-family:var(--display);font-size:30px;font-weight:600;color:var(--teal);border:2px solid var(--line);margin-bottom:14px;box-shadow:0 4px 12px rgba(11,59,63,0.06);overflow:hidden}
+    .photo-slot img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
     .team-person h3{font-family:var(--body);font-size:19px;font-weight:600;margin-bottom:6px}
     .team-person p{font-size:17px;line-height:1.4;color:var(--muted)}
     .closing-ask{display:flex;justify-content:space-between;align-items:center;gap:45px;border-top:1px solid var(--line);padding-top:22px}
@@ -478,7 +479,7 @@
           <div class="team-person"><div class="photo-slot">JB</div><h3>Jordi Barrachina Méndez</h3><p>CEO · Dirección &amp; Negocio</p></div>
           <div class="team-person"><div class="photo-slot">NC</div><h3>Nahuel Chosco Flores</h3><p>CTO · Frontend &amp; Móvil</p></div>
           <div class="team-person"><div class="photo-slot">JC</div><h3>Jorge Clérigues Malet</h3><p>Arquitectura &amp; Backend</p></div>
-          <div class="team-person"><div class="photo-slot">BV</div><h3>Brad Owen Valladares Quispe</h3><p>Full Stack &amp; QA</p></div>
+          <div class="team-person"><div class="photo-slot"><img src="assets/brad_valladares.jpg" alt="Foto de Brad Owen Valladares Quispe"></div><h3>Brad Owen Valladares Quispe</h3><p>Full Stack &amp; QA</p></div>
           <div class="team-person"><div class="photo-slot">SC</div><h3>Sergio Camacho Roig</h3><p>Diseño IU / UX &amp; Producto</p></div>
         </div>
         <div class="closing-ask"><div class="closing-amount">250.000 €<br><span>por el 20 % del capital</span></div><p>Para que cada relevo conserve<br>lo que importa.</p></div>
