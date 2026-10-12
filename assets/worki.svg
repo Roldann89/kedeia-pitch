@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 132" width="132" height="132">
+  <defs>
+    <filter id="glyphShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.6" stdDeviation="1" flood-color="#401868" flood-opacity="0.4" />
+    </filter>
+  </defs>
+  <!-- Background purple rounded squircle -->
+  <rect x="0" y="0" width="132" height="132" rx="26" ry="26" fill="#8E57C6" />
+  
+  <g fill="#EAB38A" filter="url(#glyphShadow)">
+    <!-- Top-Left: 4 Chevrons -->
+    <path d="M 20 24 L 38.5 16.5 L 57 24 L 57 29.5 L 38.5 22 L 20 29.5 Z" />
+    <path d="M 20 36 L 38.5 28.5 L 57 36 L 57 41.5 L 38.5 34 L 20 41.5 Z" />
+    <path d="M 20 48 L 38.5 40.5 L 57 48 L 57 53.5 L 38.5 46 L 20 53.5 Z" />
+    <path d="M 20 60 L 38.5 52.5 L 57 60 L 57 65.5 L 38.5 58 L 20 65.5 Z" />
+    
+    <!-- Top-Right: Donut Ring -->
+    <path fill-rule="evenodd" d="M 93 15.5 A 19 19 0 1 0 93 53.5 A 19 19 0 1 0 93 15.5 Z M 93 26 A 8.5 8.5 0 1 1 93 43 A 8.5 8.5 0 1 1 93 26 Z" />
+    
+    <!-- Bottom-Left: Leaf / Droplet -->
+    <path d="M 53.5 80 L 53.5 98 A 17 17 0 0 1 36.5 115 A 17 17 0 0 1 19.5 98 A 17 17 0 0 1 36.5 80 Z" />
+    
+    <!-- Bottom-Right: Diamond / Rhombus -->
+    <polygon points="94,73 110,95 94,117 78,95" />
+  </g>
+</svg>
