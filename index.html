@@ -9,15 +9,24 @@
   <style>
     @font-face{font-family:Outfit;src:url('assets/outfit.ttf') format('truetype');font-weight:100 900;font-display:swap}
     @font-face{font-family:'Plus Jakarta Sans';src:url('assets/jakarta.ttf') format('truetype');font-weight:200 800;font-display:swap}
-    :root{--cream:#F6F7F2;--ink:#0B3B3F;--teal:#0E5C63;--muted:#4B686B;--amber:#B4690E;--line:#D8DFD5;--tint:#E8EEE7;--white:#FFF;--display:Outfit,Arial,sans-serif;--body:'Plus Jakarta Sans',Arial,sans-serif}
+    :root{--cream:#F6F7F2;--ink:#0B3B3F;--teal:#0E5C63;--muted:#4B686B;--amber:#B4690E;--line:#D8DFD5;--tint:#E8EEE7;--white:#FFF;--display:Outfit,Arial,sans-serif;--body:'Plus Jakarta Sans',Arial,sans-serif;--ease-cinematic:cubic-bezier(0.16,1,0.3,1);--ease-soft:cubic-bezier(0.25,1,0.5,1)}
     *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--cream);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased}
     button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
     a{color:inherit}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--display)}
     .viewport{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
     .slide-deck{position:relative;width:1440px;height:810px;flex-shrink:0;transform-origin:center center;background:var(--cream)}
-    .slide{position:absolute;inset:0;padding:48px 72px 96px;display:flex;flex-direction:column;opacity:0;visibility:hidden;pointer-events:none;overflow:hidden;transition:opacity .24s ease,transform .24s ease;transform:translateX(18px)}
-    .slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:none;z-index:1}
-    .slide.prev{transform:translateX(-18px)}.slide-deck.going-back .slide:not(.active){transform:translateX(-18px)}
+    .slide{position:absolute;inset:0;padding:48px 72px 96px;display:flex;flex-direction:column;opacity:0;visibility:hidden;pointer-events:none;overflow:hidden;transition:opacity .42s var(--ease-soft),transform .42s var(--ease-cinematic);transform:translateX(38px);will-change:opacity,transform}
+    .slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(0);z-index:2;transition:opacity .45s var(--ease-soft),transform .45s var(--ease-cinematic)}
+    .slide.prev{transform:translateX(-38px)}.slide-deck.going-back .slide:not(.active){transform:translateX(38px)}.slide-deck.going-back .slide.prev{transform:translateX(-38px)}
+    @keyframes animIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .slide.active .slide-title,.slide.active .opening h1{animation:animIn .48s var(--ease-cinematic) .06s both}
+    .slide.active .slide-body{animation:animIn .52s var(--ease-cinematic) .12s both}
+    .slide.active .evidence-layout>*:first-child,.slide.active .demo-layout>*:first-child,.slide.active .market-block:nth-child(1),.slide.active .milestone:nth-child(1),.slide.active .chart-block:first-child,.slide.active .tech-group:nth-child(1),.slide.active .team-person:nth-child(1){animation:animIn .46s var(--ease-cinematic) .15s both}
+    .slide.active .evidence-layout>*:nth-child(2),.slide.active .demo-layout>*:nth-child(2),.slide.active .market-block:nth-child(2),.slide.active .milestone:nth-child(2),.slide.active .chart-block:nth-child(2),.slide.active .tech-group:nth-child(2),.slide.active .team-person:nth-child(2){animation:animIn .46s var(--ease-cinematic) .22s both}
+    .slide.active .market-block:nth-child(3),.slide.active .milestone:nth-child(3),.slide.active .tech-group:nth-child(3),.slide.active .team-person:nth-child(3){animation:animIn .46s var(--ease-cinematic) .29s both}
+    .slide.active .team-person:nth-child(4){animation:animIn .46s var(--ease-cinematic) .36s both}
+    .slide.active .team-person:nth-child(5){animation:animIn .46s var(--ease-cinematic) .43s both}
+    .slide.active .finance-milestones,.slide.active .exit-line,.slide.active .closing-ask{animation:animIn .52s var(--ease-cinematic) .26s both}
     .masthead{display:flex;justify-content:space-between;align-items:center;gap:32px;margin-bottom:30px;min-height:32px}
     .brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:2px;line-height:1}
     .brand img{width:32px;height:38px;object-fit:contain}.folio{font-size:18px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
@@ -95,7 +104,7 @@
     .tech-row{display:flex;align-items:center;gap:22px;margin-bottom:30px;font-size:28px}.tech-row img{width:50px;height:50px;object-fit:contain}.tech-row .worki-wordmark{font-family:var(--display);font-size:31px;font-weight:600;letter-spacing:-1px}.tech-row.worki{padding-left:72px}
     /* Explicit pending team slots do not imply identities or validated roles. */
     .closing .slide-title{font-size:55px;max-width:1120px;line-height:1.08}.team-row{display:grid;grid-template-columns:repeat(5,1fr);gap:26px;margin:16px 0 36px}.team-person{padding-top:18px;border-top:1px solid var(--line)}
-    .photo-slot{width:108px;height:108px;background:var(--tint);display:grid;place-items:center;font-size:18px;color:var(--muted);margin-bottom:16px}.team-person h3{font-family:var(--body);font-size:20px;font-weight:600;margin-bottom:7px}.team-person p{font-size:18px;line-height:1.45;color:var(--muted)}
+    .photo-slot{width:108px;height:108px;background:var(--tint);border-radius:54px;display:grid;place-items:center;font-family:var(--display);font-size:32px;font-weight:600;color:var(--teal);border:2px solid var(--line);margin-bottom:16px;box-shadow:0 4px 12px rgba(11,59,63,0.06)}.team-person h3{font-family:var(--body);font-size:20px;font-weight:600;margin-bottom:7px}.team-person p{font-size:18px;line-height:1.45;color:var(--muted)}
     .closing-ask{display:flex;justify-content:space-between;align-items:center;gap:45px;border-top:1px solid var(--line);padding-top:26px}.closing-amount{font-family:var(--display);font-size:64px;font-weight:500;letter-spacing:-2px}.closing-amount span{font-size:29px;letter-spacing:-.5px;color:var(--muted)}.closing-ask p{font-size:27px;line-height:1.45;max-width:510px}
     /* Presentation UI sits outside the audience content. */
     .progress-track{position:fixed;inset:0 0 auto;height:3px;background:#0B3B3F0C;z-index:12}.progress-bar{height:100%;width:10%;background:var(--teal);transition:width .2s}
@@ -241,8 +250,12 @@
       <header class="masthead"><div class="brand"><img src="assets/kedeia-logo.png" alt="Logo de KEDEIA"><span>KEDEIA</span></div><span class="folio">10 / 10</span></header>
       <h2 class="slide-title" id="title-10">El cuidado organizado,<br>la familia informada.</h2>
       <div class="slide-body">
-        <div class="team-row" aria-label="Equipo pendiente de completar con identidades reales">
-          <div class="team-person"><div class="photo-slot">Foto pendiente</div><h3>Nombre pendiente</h3><p>Rol por confirmar</p></div><div class="team-person"><div class="photo-slot">Foto pendiente</div><h3>Nombre pendiente</h3><p>Rol por confirmar</p></div><div class="team-person"><div class="photo-slot">Foto pendiente</div><h3>Nombre pendiente</h3><p>Rol por confirmar</p></div><div class="team-person"><div class="photo-slot">Foto pendiente</div><h3>Nombre pendiente</h3><p>Rol por confirmar</p></div><div class="team-person"><div class="photo-slot">Foto pendiente</div><h3>Nombre pendiente</h3><p>Rol por confirmar</p></div>
+        <div class="team-row" aria-label="Equipo emprendedor de KEDEIA">
+          <div class="team-person"><div class="photo-slot">JB</div><h3>Jordi Barrachina Méndez</h3><p>Dirección &amp; Negocio</p></div>
+          <div class="team-person"><div class="photo-slot">NC</div><h3>Nahuel Chosco Flores</h3><p>Desarrollo Frontend &amp; Móvil</p></div>
+          <div class="team-person"><div class="photo-slot">JC</div><h3>Jorge Clérigues Malet</h3><p>Arquitectura &amp; Backend</p></div>
+          <div class="team-person"><div class="photo-slot">BV</div><h3>Brad Owen Valladares Quispe</h3><p>Full Stack &amp; QA</p></div>
+          <div class="team-person"><div class="photo-slot">SC</div><h3>Sergio Camacho Roig</h3><p>Diseño IU / UX &amp; Producto</p></div>
         </div>
         <div class="closing-ask"><div class="closing-amount">250.000 €<br><span>por el 20 % del capital</span></div><p>Para que cada relevo conserve<br>lo que importa.</p></div>
       </div>
